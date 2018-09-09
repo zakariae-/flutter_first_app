@@ -63,9 +63,11 @@ class _ProductCreatePage extends State<ProductCreatePage> {
 
   @override
   Widget build(BuildContext context) {
+    final double targetWidth = MediaQuery.of(context).size.width * 0.1;
     return Container(
       margin: EdgeInsets.all(10.0),
       child: ListView(
+        padding: EdgeInsets.symmetric(horizontal: targetWidth),
         children: <Widget>[
           _buildTitleTextField(),
           _buildDescriptionTextField(),
