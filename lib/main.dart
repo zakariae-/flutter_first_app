@@ -41,12 +41,14 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           brightness: Brightness.light,
           primarySwatch: Colors.deepOrange,
-          accentColor: Colors.deepPurple[100],fontFamily: 'Oswald'),
+          accentColor: Colors.deepPurple[100],
+          fontFamily: 'Oswald'),
       // home: AuthPage(),
       routes: {
         '/': (BuildContext context) => AuthPage(),
         '/products': (BuildContext context) => ProductsPage(_products),
-        '/admin': (BuildContext context) => ProductsAdminPage(_addProduct, _deleteProduct),
+        '/admin': (BuildContext context) =>
+            ProductsAdminPage(_addProduct, _deleteProduct),
       },
       onGenerateRoute: (RouteSettings setting) {
         final List<String> pathElements = setting.name.split('/');
