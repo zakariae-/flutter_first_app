@@ -10,27 +10,24 @@ class ProductCard extends StatelessWidget {
 
   ProductCard(this.product, this.productIndex);
 
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Column(
+  Widget _buildTitlePriceRow() {
+    return Container(
+      padding: EdgeInsets.only(top: 10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Image.asset(product['image']),
-          Container(
-            padding: EdgeInsets.only(top: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                TitleDefault(product['title']),
-                SizedBox(
-                  width: 10.0,
-                ),
-                PriceTag(product['price'].toString()),
-              ],
-            ),
+          TitleDefault(product['title']),
+          SizedBox(
+            width: 10.0,
           ),
-          AdresseTag('Rue Honore d\'Estienne d\'Orves, Suresnes'),
-          ButtonBar(
+          PriceTag(product['price'].toString()),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionButtons(BuildContext context) {
+    return ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
               IconButton(
@@ -47,7 +44,18 @@ class ProductCard extends StatelessWidget {
                 },
               )
             ],
-          ),
+          );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Column(
+        children: <Widget>[
+          Image.asset(product['image']),
+          _buildTitlePriceRow(),
+          AdresseTag('Rue Honore d\'Estienne d\'Orves, Suresnes'),
+          _buildActionButtons(context),
         ],
       ),
     );
