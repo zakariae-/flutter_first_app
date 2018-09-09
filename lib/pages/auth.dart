@@ -82,26 +82,30 @@ class _AuthPageState extends State<AuthPage> {
           image: _buildBackgroundImage(),
         ),
         padding: EdgeInsets.all(10.0),
-        child: Center(
+        child: Container(
+          alignment: Alignment.center,
           child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                _buildEmailTextField(),
-                SizedBox(
-                  height: 10.0,
-                ),
-                _buildPasswordTextField(),
-                _buildAcceptSwitch(),
-                SizedBox(
-                  height: 10.0,
-                ),
-                RaisedButton(
-                  color: Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  child: Text('LOGIN'),
-                  onPressed: _submitForm,
-                ),
-              ],
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: Column(
+                children: <Widget>[
+                  _buildEmailTextField(),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  _buildPasswordTextField(),
+                  _buildAcceptSwitch(),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  RaisedButton(
+                    color: Theme.of(context).primaryColor,
+                    textColor: Colors.white,
+                    child: Text('LOGIN'),
+                    onPressed: _submitForm,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
