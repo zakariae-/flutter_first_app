@@ -20,7 +20,7 @@ class _ProductCreatePage extends State<ProductCreatePage> {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Product Title'),
       validator: (String value) {
-        if(value.isEmpty) {
+        if (value.isEmpty) {
           return 'Title is required';
         }
       },
@@ -35,7 +35,7 @@ class _ProductCreatePage extends State<ProductCreatePage> {
       decoration: InputDecoration(labelText: 'Product Description'),
       maxLines: 4,
       validator: (String value) {
-        if(value.isEmpty) {
+        if (value.isEmpty) {
           return 'Description is required';
         }
       },
@@ -50,7 +50,8 @@ class _ProductCreatePage extends State<ProductCreatePage> {
       decoration: InputDecoration(labelText: 'Product Price'),
       keyboardType: TextInputType.number,
       validator: (String value) {
-        if(value.isEmpty || !RegExp(r'^(?:[1-9]\d*|0)?(?:[.,]\d+)?$').hasMatch(value)) {
+        if (value.isEmpty ||
+            !RegExp(r'^(?:[1-9]\d*|0)?(?:[.,]\d+)?$').hasMatch(value)) {
           return 'Price is required and shoud be a number';
         }
       },
@@ -61,7 +62,7 @@ class _ProductCreatePage extends State<ProductCreatePage> {
   }
 
   void _submitForm() {
-    if(!_formKey.currentState.validate()) {
+    if (!_formKey.currentState.validate()) {
       return;
     }
     _formKey.currentState.save();
@@ -78,24 +79,29 @@ class _ProductCreatePage extends State<ProductCreatePage> {
   @override
   Widget build(BuildContext context) {
     final double targetWidth = MediaQuery.of(context).size.width * 0.1;
-    return Container(
-      margin: EdgeInsets.all(10.0),
-      child: Form(
-        key: _formKey,
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: targetWidth),
-          children: <Widget>[
-            _buildTitleTextField(),
-            _buildDescriptionTextField(),
-            _buildPriceTextField(),
-            SizedBox(height: 10.0),
-            RaisedButton(
-              child: Text('Save'),
-              color: Theme.of(context).accentColor,
-              textColor: Colors.white,
-              onPressed: _submitForm,
-            )
-          ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Container(
+        margin: EdgeInsets.all(10.0),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: targetWidth),
+            children: <Widget>[
+              _buildTitleTextField(),
+              _buildDescriptionTextField(),
+              _buildPriceTextField(),
+              SizedBox(height: 10.0),
+              RaisedButton(
+                child: Text('Save'),
+                color: Theme.of(context).accentColor,
+                textColor: Colors.white,
+                onPressed: _submitForm,
+              )
+            ],
+          ),
         ),
       ),
     );
