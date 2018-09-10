@@ -14,43 +14,57 @@ class _ProductCreatePage extends State<ProductCreatePage> {
   String _titleValue = '';
   String _descriptionValue = '';
   double _priceValue;
+  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
   Widget _buildTitleTextField() {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(labelText: 'Product Title'),
-      onChanged: (String value) {
-        setState(() {
-          _titleValue = value;
-        });
+      validator: (String value) {
+        if(value.isEmpty) {
+          return 'Title is required';
+        }
+      },
+      onSaved: (String value) {
+        _titleValue = value;
       },
     );
   }
 
   Widget _buildDescriptionTextField() {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(labelText: 'Product Description'),
       maxLines: 4,
-      onChanged: (String value) {
-        setState(() {
-          _descriptionValue = value;
-        });
+      validator: (String value) {
+        if(value.isEmpty) {
+          return 'Description is required';
+        }
+      },
+      onSaved: (String value) {
+        _descriptionValue = value;
       },
     );
   }
 
   Widget _buildPriceTextField() {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(labelText: 'Product Price'),
       keyboardType: TextInputType.number,
-      onChanged: (String value) {
-        setState(() {
-          _priceValue = double.parse(value);
-        });
+      validator: (String value) {
+        if(value.isEmpty || !RegExp(r'^(?:[1-9]\d*|0)?(?:[.,]\d+)?$').hasMatch(value)) {
+          return 'Price is required and shoud be a number';
+        }
+      },
+      onSaved: (String value) {
+        _priceValue = double.parse(value.replaceFirst(RegExp(r','), '.'));
       },
     );
   }
 
   void _submitForm() {
+    if(!_formKey.currentState.validate()) {
+      return;
+    }
+    _formKey.currentState.save();
     final Map<String, dynamic> product = {
       'title': _titleValue,
       'description': _descriptionValue,
@@ -66,20 +80,23 @@ class _ProductCreatePage extends State<ProductCreatePage> {
     final double targetWidth = MediaQuery.of(context).size.width * 0.1;
     return Container(
       margin: EdgeInsets.all(10.0),
-      child: ListView(
-        padding: EdgeInsets.symmetric(horizontal: targetWidth),
-        children: <Widget>[
-          _buildTitleTextField(),
-          _buildDescriptionTextField(),
-          _buildPriceTextField(),
-          SizedBox(height: 10.0),
-          RaisedButton(
-            child: Text('Save'),
-            color: Theme.of(context).accentColor,
-            textColor: Colors.white,
-            onPressed: _submitForm,
-          )
-        ],
+      child: Form(
+        key: _formKey,
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: targetWidth),
+          children: <Widget>[
+            _buildTitleTextField(),
+            _buildDescriptionTextField(),
+            _buildPriceTextField(),
+            SizedBox(height: 10.0),
+            RaisedButton(
+              child: Text('Save'),
+              color: Theme.of(context).accentColor,
+              textColor: Colors.white,
+              onPressed: _submitForm,
+            )
+          ],
+        ),
       ),
     );
   }
