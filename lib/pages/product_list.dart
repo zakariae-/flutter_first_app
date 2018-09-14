@@ -5,8 +5,9 @@ import './product_edite.dart';
 class ProductListPage extends StatelessWidget {
   final List<Map<String, dynamic>> products;
   final Function updateProduct;
+  final Function deleteProduct;
 
-  ProductListPage(this.products, this.updateProduct);
+  ProductListPage(this.products, this.updateProduct, this.deleteProduct);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,11 @@ class ProductListPage extends StatelessWidget {
           background: Container(
             color: Colors.red,
           ),
+          onDismissed: (DismissDirection direction) {
+            if (direction == DismissDirection.endToStart) {
+              deleteProduct(index);
+            }
+          },
           child: Column(
             children: <Widget>[
               ListTile(
