@@ -97,14 +97,16 @@ class _ProductEditePageState extends State<ProductEditePage> {
   }
 
   Widget _buildSubmitButtom() {
-    return ScopedModelDescendant<ProductsModel>(builder: (BuildContext context, Widget child, ProductsModel model) {
-      return RaisedButton(
-      child: Text('Save'),
-      color: Theme.of(context).accentColor,
-      textColor: Colors.white,
-      onPressed: () =>_submitForm(model.addProduct, model.updateProduct),
+    return ScopedModelDescendant<ProductsModel>(
+      builder: (BuildContext context, Widget child, ProductsModel model) {
+        return RaisedButton(
+          child: Text('Save'),
+          color: Theme.of(context).accentColor,
+          textColor: Colors.white,
+          onPressed: () => _submitForm(model.addProduct, model.updateProduct),
+        );
+      },
     );
-    },); 
   }
 
   Widget _buildPageContent(BuildContext context) {
