@@ -38,7 +38,7 @@ class ProductsPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Products(products),
+      body: Products(),
     );
   }
 }
