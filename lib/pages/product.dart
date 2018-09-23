@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../widgets/ui_elements/title_default.dart';
-import '../scoped_models/products.dart';
+import '../scoped-models/products.dart';
 import '../models/product.dart';
 
 class ProductPage extends StatelessWidget {

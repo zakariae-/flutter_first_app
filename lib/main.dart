@@ -6,8 +6,7 @@ import './pages/auth.dart';
 import './pages/products_admin.dart';
 import './pages/products.dart';
 import './pages/product.dart';
-import './models/product.dart';
-import './scoped_models/products.dart';
+import './scoped-models/products.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;

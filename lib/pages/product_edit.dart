@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../models/product.dart';
-import '../scoped_models/products.dart';
+import '../scoped-models/products.dart';
 
-class ProductEditePage extends StatefulWidget {
+class ProductEditPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _ProductEditePageState();
+    return _ProductEditPageState();
   }
 }
 
-class _ProductEditePageState extends State<ProductEditePage> {
+class _ProductEditPageState extends State<ProductEditPage> {
   final Map<String, dynamic> _formData = {
     'title': null,
     'description': null,
